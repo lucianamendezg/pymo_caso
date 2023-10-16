@@ -16,7 +16,7 @@ module.exports = {
       },
       colors: {
         'light-blue': '#5C7DF3'
-      }
+      },
     },
   },
   plugins: [],
