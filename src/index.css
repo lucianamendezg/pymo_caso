@@ -1,3 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'filson';
+  src: url("./fonts/filson_soft_black.ttf") format('truetype');
+}
+
+@font-face {
+  font-family: 'agora-sans';
+  src: url("./fonts/agora_sans_reg.ttf") format('truetype');
+}
+
+@font-face {
+  font-family: 'agora-slab';
+  src: url("./fonts/agora_slab_reg.ttf") format('truetype');
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
