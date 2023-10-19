@@ -3,21 +3,23 @@ import pymoLogo from '../../images/logo-negro.png'
 import githubLogo from '../../images/github.png'
 
 let deliverables: { key: number, title: string,  link: string }[] = [
-    {key:1, title:"Creative Type", link: ""},
+    {key:1, title:"Creative Type", link: "https://drive.google.com/file/d/1PbPZyQFLTIQ6WsND36eUnEty_FjItHTN/view?usp=sharing"},
     {key:2, title:"Diagrama",link:""},
     {key:3, title:"Tablas en Excel",link:""},
     {key:4, title:"Base de datos",link:""},
-    {key:5, title:"Formulario para Hospitales",link:""},
-    {key:6, title:"Dashboard",link:""},
+    {key:5, title:"Formulario para Hospitales",link:"/formulario"},
+    {key:6, title:"Dashboard",link:"/dashboard"},
 ];
 
 function menuLinkStyle (title: string, link: string) {
     return (
-        <button className="bg-gradient-to-b hover:from-orange hover:to-red px-4 py-3 hover:text-white text-xs">
-            <p className="font-filson">
-                <a href={link}>{title}</a>
-            </p>
-        </button>
+        <a href={link}>
+            <button className="bg-gradient-to-b hover:from-orange hover:to-red px-4 py-3 hover:text-white text-xs">
+                <p className="font-filson">
+                    {title}
+                </p>
+            </button>
+        </a>
     )
 }
 
@@ -52,7 +54,7 @@ export const Header = () => {
                             </div>
                         }
                     </div>
-                    <a href='https://github.com/lucianamendezg' className='px-5'>
+                    <a href='https://github.com/lucianamendezg/pymo_caso' className='px-5'>
                         <img src={githubLogo} className='h-8 w-auto' alt='Github logo'/> 
                     </a>
                 </div>
