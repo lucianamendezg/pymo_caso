@@ -3,8 +3,7 @@ import { Header } from './components/layout/header'
 
 function App() {
   return (
-    <div>
-    </div>
+    <div></div>
   );
 }
 
