@@ -6,7 +6,8 @@ module.exports = {
       'blue':'#1D22DC',
       'pink': '#B96493',
       'red': '#C55042',
-      'orange': '#E28E25'
+      'orange': '#E28E25',
+      'white': '#FFFFFF',
     },
     extend: {
       fontFamily: {
