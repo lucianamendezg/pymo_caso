@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import pymoLogo from '../../images/logo-negro.png'
 import githubLogo from '../../images/github.png'
 
@@ -22,10 +22,12 @@ function menuLinkStyle (title: string, link: string) {
 }
 
 export const Header = () => {
+    const [nav, setNav] = useState(true); //cambia estado cuando le pican al hamburger menu
     return (
-        <div className='flex flex-wrap items-center justify-between'>   
-                <img src={pymoLogo} className='flex items-center h-18 w-auto mx-2 my-3' alt='PYMO logo'/>
-                <div className="">
+        <div className='flex items-center justify-between'>   
+                <a href="/"><img src={pymoLogo} className='flex items-center h-18 w-auto ml-2 my-3' alt='PYMO logo'/></a>
+                {/*Menu cuando esta en laptop (pantallas large)*/}
+                <div className="hidden lg:inline">
                     <ul>
                         {deliverables.map((deliverable) => (
                             <li key={deliverable.key} className="inline">
@@ -34,9 +36,26 @@ export const Header = () => {
                         ))}
                     </ul> 
                 </div>
-                <a href='https://github.com/lucianamendezg' className='px-5'>
-                    <img src={githubLogo} className='h-8 w-auto' alt='Github logo'/> 
-                </a>
+                {/*Menu cuando esta en iPad/mobile (medium/small), aparece hamburger*/}
+                <div className="flex justify-end items-center">
+                    <div className="lg:hidden">
+                        {/*Hamburger menu symbol*/}
+                        <button className="space-y-1.5" onClick={() => setNav(!nav)}>
+                            <div className="w-8 h-0.5 bg-black"></div>
+                            <div className="w-8 h-0.5 bg-black"></div>
+                            <div className="w-8 h-0.5 bg-black"></div>
+                        </button>
+                        {/*Menu cuando nav is true*/}
+                        {nav &&
+                            <div className="flex gap-2">
+                                Menu
+                            </div>
+                        }
+                    </div>
+                    <a href='https://github.com/lucianamendezg' className='px-5'>
+                        <img src={githubLogo} className='h-8 w-auto' alt='Github logo'/> 
+                    </a>
+                </div>
         </div>
     );
 }
