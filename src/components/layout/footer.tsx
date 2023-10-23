@@ -7,7 +7,7 @@ export const Footer = () => {
                         ¡Comunicate conmigo!
                     </h2>
                 <p className="text-right font-filson text-xs md:text-sm pt-6 pr-2">
-                    Creado utilizando React, Typescript, Tailwind CSS, AWS, y mucho ☕ 
+                    Creado utilizando React, Typescript, Tailwind CSS, GCP, y mucho ☕ 
                 </p>
             </a>
         </div>
