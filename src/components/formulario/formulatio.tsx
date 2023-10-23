@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import HeroImage from "../layout/heroImage"
 import Layout from "../layout/layout"
 import Hospital from "../../images/hospital.jpeg"
 import Logo from "../../images/logo.png"
-import { TextBox, TextBoxError } from "../shared/textBox"
+import { TextBox } from "../shared/textBox"
 import { Button } from "../shared/button"
+import { useNavigate } from "react-router-dom";
 
 interface FormularioHospitalesInterface  {
     nombre_hospital:string;
@@ -27,13 +28,15 @@ interface ErrorInterface {
     cubrebocas: boolean;
     kn95: boolean;
     caretas: boolean;
+    error: boolean;
 }
 
 const initialErrors = {
     casos_ultimo_mes: false,
     cubrebocas: false,
     kn95: false,
-    caretas: false
+    caretas: false,
+    error:false
 }
 
 const TextSection = () => {
@@ -53,6 +56,12 @@ const Preguntas = () => {
     const [formData, setFormData] = useState<FormularioHospitalesInterface>(FormularioHospitalesInitState);
     const [errorData, setFormError] = useState<ErrorInterface>(initialErrors);
     
+    let navigate = useNavigate(); 
+    const routeChange = () =>{ 
+        let path = `/`; 
+        navigate(path);
+    }
+
     const onChange = (event: React.ChangeEvent<HTMLInputElement>) => { //changes state every time it something is typed
         const {id, value} = event.target;
         setFormData({ ...formData, [id]: value });
@@ -82,9 +91,25 @@ const Preguntas = () => {
             }
         });
         if (!errors) {
-            console.log("Submit!")
+            //send formData to google cloud
+            await fetch('https://us-central1-spartan-grail-402612.cloudfunctions.net/info_formulario',
+            {
+                method: "POST", 
+                body: JSON.stringify(formData),
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+            }).then (
+                response => console.log(response)
+            ).
+            catch( error =>
+                console.log(error)
+            )
+            routeChange();   
         }
-        console.log(errorData);
+        setFormError({ ...errorData, ['error']: errors });
         };
 
     return (
@@ -94,27 +119,18 @@ const Preguntas = () => {
                 nombre del hospital no tiene error, se cambia con el 
                 conditional operator*/}
                 <TextBox textLabel="Nombre del Hospital:" id="nombre_hospital" onChange={onChange}/>
-                {
-                    errorData['casos_ultimo_mes'] ?
-                    <TextBoxError textLabel="Número de casos registrados en el último mes:" id="casos_ultimo_mes" onChange={onChange}/> :
                     <TextBox textLabel="Número de casos registrados en el último mes:" id="casos_ultimo_mes" onChange={onChange}/>
-                }
-                {
-                    errorData['cubrebocas'] ?
-                    <TextBoxError textLabel="Número de cubrebocas que necesitan:" id="cubrebocas" onChange={onChange}/> :
                     <TextBox textLabel="Número de cubrebocas que necesitan:" id="cubrebocas" onChange={onChange}/>
-                }
-                {
-                    errorData['kn95'] ?
-                    <TextBoxError textLabel="Número de mascarillas KN95 que necesitan:" id="kn95" onChange={onChange}/> :
                     <TextBox textLabel="Número de mascarillas KN95 que necesitan:" id="kn95" onChange={onChange}/>
-                }
-                {
-                    errorData['caretas'] ?
-                    <TextBoxError textLabel="Número de caretas que necesitan:" id="caretas" onChange={onChange}/> :
                     <TextBox textLabel="Número de caretas que necesitan:" id="caretas" onChange={onChange}/>
-                }
                 <Button title="Enviar" id="formulario-hospitales" />
+                {
+                    errorData['error'] && 
+                        <div className="font-filson font-extrabold font-xl">
+                            Los casos registrados, cubrebocas, mascarillas, y caretas tienen que ser numéricos. Porfavor, corrija su pedido.
+                        </div>
+                                
+                }                
             </form>
         </div>
     )
