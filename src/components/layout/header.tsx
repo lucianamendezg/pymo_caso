@@ -5,8 +5,7 @@ import githubLogo from '../../images/github.png'
 let deliverables: { key: number, title: string,  link: string }[] = [
     {key:1, title:"Creative Type", link: "https://drive.google.com/file/d/1PbPZyQFLTIQ6WsND36eUnEty_FjItHTN/view?usp=sharing"},
     {key:2, title:"Diagrama",link:""},
-    {key:3, title:"Tablas en Excel",link:""},
-    {key:4, title:"Base de datos",link:""},
+    {key:3, title:"Tablas en Excel",link:"https://drive.google.com/drive/folders/1qVP3FXAseNupv5AE9Cvz_aj9XAzavwcb?usp=sharing"},
     {key:5, title:"Formulario para Hospitales",link:"/formulario"},
     {key:6, title:"Dashboard",link:"/dashboard"},
 ];
@@ -26,7 +25,8 @@ function menuLinkStyle (title: string, link: string) {
 export const Header = () => {
     const [nav, setNav] = useState(true); //cambia estado cuando le pican al hamburger menu
     return (
-        <div className='flex items-center justify-between'>   
+        <div className=''>   
+            <div className="flex items-center justify-between">
                 <a href="/"><img src={pymoLogo} className='flex items-center h-18 w-auto ml-2 my-3' alt='PYMO logo'/></a>
                 {/*Menu cuando esta en laptop (pantallas large)*/}
                 <div className="hidden lg:inline">
@@ -47,17 +47,24 @@ export const Header = () => {
                             <div className="w-8 h-0.5 bg-black"></div>
                             <div className="w-8 h-0.5 bg-black"></div>
                         </button>
-                        {/*Menu cuando nav is true*/}
-                        {nav &&
-                            <div className="flex gap-2">
-                                Menu
-                            </div>
-                        }
                     </div>
                     <a href='https://github.com/lucianamendezg/pymo_caso' className='px-5'>
                         <img src={githubLogo} className='h-8 w-auto' alt='Github logo'/> 
                     </a>
                 </div>
+                </div>
+                    {/*Menu cuando nav is true*/}
+                {nav &&
+                    <div className="block">
+                        <ul>
+                            {deliverables.map((deliverable) => (
+                            <li key={deliverable.key} className="inline">
+                                {menuLinkStyle(deliverable.title, deliverable.link)}
+                            </li>
+                        ))}
+                        </ul> 
+                    </div>
+                }
         </div>
     );
 }
