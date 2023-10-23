@@ -5,7 +5,7 @@ import githubLogo from '../../images/github.png'
 let deliverables: { key: number, title: string,  link: string }[] = [
     {key:1, title:"Creative Type", link: "https://drive.google.com/file/d/1PbPZyQFLTIQ6WsND36eUnEty_FjItHTN/view?usp=sharing"},
     {key:2, title:"Diagrama",link:""},
-    {key:3, title:"Tablas en Excel",link:"https://drive.google.com/drive/folders/1qVP3FXAseNupv5AE9Cvz_aj9XAzavwcb?usp=sharing"},
+    {key:3, title:"Tablas en Excel",link:"https://docs.google.com/spreadsheets/d/1ooqVLic26LBIdG8lY2WtPmMCxU2dGeZx3xvghjr3OCo/edit?usp=sharing"},
     {key:5, title:"Formulario para Hospitales",link:"/formulario"},
     {key:6, title:"Dashboard",link:"/dashboard"},
 ];
@@ -53,6 +53,7 @@ export const Header = () => {
                     </a>
                 </div>
                 </div>
+                <div className="lg:hidden">
                     {/*Menu cuando nav is true*/}
                 {nav &&
                     <div className="block">
@@ -65,6 +66,7 @@ export const Header = () => {
                         </ul> 
                     </div>
                 }
+                </div>
         </div>
     );
 }
