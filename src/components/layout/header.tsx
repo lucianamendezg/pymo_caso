@@ -4,7 +4,7 @@ import githubLogo from '../../images/github.png'
 
 let deliverables: { key: number, title: string,  link: string }[] = [
     {key:1, title:"Creative Type", link: "https://drive.google.com/file/d/1PbPZyQFLTIQ6WsND36eUnEty_FjItHTN/view?usp=sharing"},
-    {key:2, title:"Diagrama",link:""},
+    {key:2, title:"Diagrama",link:"https://drive.google.com/file/d/1T7rJMwm0eb8CMdXMebWqH9QxM1Glb58h/view?usp=sharing"},
     {key:3, title:"Tablas en Excel",link:"https://docs.google.com/spreadsheets/d/1ooqVLic26LBIdG8lY2WtPmMCxU2dGeZx3xvghjr3OCo/edit?usp=sharing"},
     {key:5, title:"Formulario para Hospitales",link:"/formulario"},
     {key:6, title:"Dashboard",link:"/dashboard"},
